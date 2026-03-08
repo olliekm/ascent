@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -g -fsanitize=address
 
+# The final program
 distributed_ml: main.o server.o worker.o model.o protocol.o
 	$(CC) $(CFLAGS) -o $@ $^ -lm
 
