@@ -3,6 +3,6 @@
 
 #include "model.h"
 
-void server_loop(int *write_fds, int *read_fds, int n_workers, int n, float lr, int max_rounds, Model model);
+void server_run(int listen_fd, int n_workers, int n, float lr, int max_rounds, Model model);
 
 #endif
