@@ -8,7 +8,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define PORT 8080
+#define PORT 9000
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {

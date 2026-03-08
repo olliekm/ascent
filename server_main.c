@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define PORT 8080
+#define PORT 9000
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
