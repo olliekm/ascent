@@ -1,5 +1,6 @@
 #include "worker.h"
 #include "protocol.h"
+#include "model.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,3 +44,19 @@ int load_csv(const char *filename, float **X, int **y, int n_features) {
     fclose(fp);
     return lines;
 }
+
+void worker_loop(int read_fd, int write_fd, const float *X, const int *y, int m, int n, Model model) {
+    float *w_buf = malloc(n * sizeof(float));
+    float *grad_buf = malloc(n * sizeof(float));
+    while (1) {
+        int ret = read_floats(read_fd, w_buf, n);
+        if (ret == -1) {
+            break;
+        }
+        model.gradient(grad_buf, w_buf, X, y, m, n);
+        write_floats(write_fd, grad_buf, n);
+    }
+    free(grad_buf);
+    free(w_buf);
+}
+
